@@ -1,6 +1,6 @@
 <script>
 import axios from 'axios'; // Import libreria axios;
-import { store } from '../store/store'
+import { store } from '../store/store';
 
 export default {
   name: "Projects",
@@ -39,7 +39,7 @@ export default {
       <th scope="col">#ID</th>
       <th scope="col">TITLE</th>
       <th scope="col">SLUG</th>
-      <th scope="col">IMG</th>
+      <th scope="col">DESCRIPTION</th>
     </tr>
   </thead>
   <tbody>
@@ -47,7 +47,7 @@ export default {
       <th>{{ project.id }}</th>
       <td>{{ project.title }}</td>
       <td>{{ project.slug }}</td>
-      <td>@{{ project.img }}</td>
+      <td>{{ project.description }}</td>
     </tr>
    
   </tbody>
