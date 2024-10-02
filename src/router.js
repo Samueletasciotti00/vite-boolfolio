@@ -3,6 +3,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from './pages/Home.vue';
 import Projects from './pages/Projects.vue';
+import PostInfo from './pages/PostInfo.vue';
 
 // Definisci le tue rotte
 const routes = [
@@ -15,6 +16,11 @@ const routes = [
     path: '/projects',
     name: 'Projects',
     component: Projects
+  },
+  {
+    path:'/dettaglio-post/:slug',
+    name: 'PostInfo',
+    component: PostInfo
   }
 ];
 
