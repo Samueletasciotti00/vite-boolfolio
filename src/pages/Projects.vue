@@ -6,25 +6,38 @@ export default {
   name: "Projects",
   data(){
     return{
+        store,
         projects: [], // Creo un array vuoto dove salverò i progetti;
+        tags: [] // Creo un array vuoto dove salverò tutti i TAG;
     }
   },
   mounted(){
     this.projectsCall();
+    // this.tagsCall();
   },
   methods:{
     projectsCall() {
         axios
-        .get('http://127.0.0.1:8000/api/projects') // Chiamat API dei Progetti;
+        .get(store.apiURL + 'projects') // Chiamata API dei Progetti;
         .then(response => {
             this.projects = response.data.data;
-            console.log(response.data.data);
         })
         .catch(error => {
           // Gestione degli errori
           console.error('Errore durante il recupero dei dati', error); //Messaggio di errore in caso di non riuscita;x\
         });
-    }
+    },
+    // tagsCall() {
+    //   axios
+    //   .get(store.apiURL + 'tags') // Chiamata API dei TAGS;
+    //   .then(response => {
+    //     this.tags = response.data;
+    //     console.log(response.data);
+    //   })
+    //   .catch(error => {
+    //     console.error('Errore durante il recupero dei dati', error); //Messaggio di errore in caso di non riuscita;x\
+    //   });
+    // }
   }
 };
 </script>
@@ -40,6 +53,8 @@ export default {
       <th scope="col">TITLE</th>
       <th scope="col">SLUG</th>
       <th scope="col">DESCRIPTION</th>
+      <th scope="col">CATEGORY</th>
+      <th scope="col">TAGS</th>
     </tr>
   </thead>
   <tbody>
@@ -48,8 +63,13 @@ export default {
       <td>{{ project.title }}</td>
       <td>{{ project.slug }}</td>
       <td>{{ project.description }}</td>
+      <td>{{ project.category.name }}</td>
+      <td v-for="tag in project.tag" :key="tag.id">{{ tag.name }}</td>
     </tr>
    
+   <!-- <tr v-for="tag in tags" :key="tag.id">
+    <th>{{ tag.id }}</th>
+   </tr> -->
   </tbody>
 </table>
 </div>
